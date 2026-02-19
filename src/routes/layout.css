@@ -1,0 +1,111 @@
+@plugin '@tailwindcss/typography';
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&family=Noto+Serif+TC:wght@200..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --font-serif: "Noto Serif", "Noto Serif TC", serif;
+}
+
+:root {
+  /* flexoki color */
+  --color-base-paper: rgb(255, 252, 240);
+  --color-base-50: rgb(242, 240, 229);
+  --color-base-100: rgb(230, 228, 217);
+  --color-base-150: rgb(217, 214, 204);
+  --color-base-200: rgb(204, 201, 191);
+  --color-base-300: rgb(183, 181, 172);
+  --color-base-400: rgb(159, 157, 150);
+  --color-base-500: rgb(135, 133, 128);
+  --color-base-600: rgb(111, 110, 105);
+  --color-base-700: rgb(87, 86, 83);
+  --color-base-800: rgb(64, 62, 60);
+  --color-base-850: rgb(52, 51, 49);
+  --color-base-900: rgb(40, 39, 38);
+  --color-base-950: rgb(28, 27, 26);
+  --color-base-black: rgb(16, 15, 15);
+
+  --color-magenta-50: rgb(254, 228, 229);
+  --color-magenta-100: rgb(252, 207, 218);
+  --color-magenta-150: rgb(249, 185, 207);
+  --color-magenta-200: rgb(244, 164, 194);
+  --color-magenta-300: rgb(228, 125, 168);
+  --color-magenta-400: rgb(206, 93, 151);
+  --color-magenta-500: rgb(183, 69, 131);
+  --color-magenta-600: rgb(160, 47, 111);
+  --color-magenta-700: rgb(135, 40, 94);
+  --color-magenta-800: rgb(100, 31, 70);
+  --color-magenta-850: rgb(79, 27, 57);
+  --color-magenta-900: rgb(57, 23, 43);
+  --color-magenta-950: rgb(36, 19, 29);
+
+  /* theme colors */
+  --fd-background: var(--color-base-paper);
+  --fd-foreground: var(--color-base-black);
+  --fd-secondary: var(--color-base-50);
+  --fd-secondary-foreground: var(--color-base-600);
+
+  --fd-primary: var(--color-magenta-600);
+  --fd-accent: var(--color-magenta-50);
+  --fd-muted: var(--color-base-100);
+
+  --fd-primary-foreground: var(--color-magenta-950);
+  --fd-accent-foreground: var(--color-magenta-600);
+  --fd-muted-foreground: var(--color-base-500);
+
+  --fd-border: var(--color-base-150);
+  --fd-ring: var(--color-magenta-400);
+
+  /* animation */
+  --animation-slide-right: slide-right 0.5s ease-in-out forwards;
+  --animation-slide-top-right: slide-top-right 0.5s ease-in-out forwards;
+  --animation-slide-in: slide-in 0.6s ease-in-out forwards;
+}
+
+.dark {
+  --fd-background: var(--color-base-black);
+  --fd-foreground: var(--color-base-200);
+  --fd-secondary: var(--color-base-950);
+  --fd-secondary-foreground: var(--color-base-500);
+
+  --fd-primary: var(--color-magenta-500);
+  --fd-accent: var(--color-magenta-850);
+  --fd-muted: var(--color-base-850);
+
+  --fd-primary-foreground: var(--color-magenta-50);
+  --fd-accent-foreground: var(--color-magenta-500);
+  --fd-muted-foreground: var(--color-base-600);
+
+  --fd-border: var(--color-base-800);
+  --fd-ring: var(--color-magenta-400);
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(150%);
+  }
+}
+
+@keyframes slide-top-right {
+  from {
+    transform: translateX(0) translateY(0);
+  }
+  to {
+    transform: translateX(150%) translateY(-150%);
+  }
+}
