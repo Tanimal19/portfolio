@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: 'main'
+    branches: "main"
 
 jobs:
   build_site:
@@ -14,27 +14,27 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 8
+          version: 10
 
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 22
           cache: pnpm
 
       - name: Install dependencies
         run: pnpm i
 
       - name: build
-        env: 
-          BASE_PATH: '/${{ github.event.repository.name }}'
+        env:
+          BASE_PATH: "/${{ github.event.repository.name }}"
         run: pnpm run build
 
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-           # this should match the `pages` option in your adapter-static options
-           path: 'build/'
+          # this should match the `pages` option in your adapter-static options
+          path: "build/"
 
   deploy:
     needs: build_site
