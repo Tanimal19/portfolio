@@ -1,0 +1,46 @@
+---
+title: "Migrate to Svelte"
+date: "2026-02-19"
+tags:
+  - "tech notes"
+  - "AI"
+---
+
+I just migrated my personal website to SvelteKit. This is the third time I’ve rewritten it.
+
+Previously, I always used React and Next.js. They were the first frameworks I learned, so I naturally stuck with them. But over time, my Next.js app started to feel unnecessarily complex and bulky. After some crazy CVEs happened last year, I figured it might be a good time to try something different.
+
+## Why refactor
+
+As I write more and more code, performance and maintainability start to matter more to me. But sometimes improving a program feels like self-comfort. It’s like reorganizing a bookshelf. It doesn’t really change anything, but it makes me feel better.
+
+Focusing on small software engineering problems makes me feel like I’m actually being a software engineer—someone who cares about performance, readability, and maintainability—instead of just a code monkey writing repetitive code.
+
+Realistically, though, these things probably don’t matter that much. Users can’t really tell the difference between 200 ms and 100 ms. Your client doesn’t care whether refactoring reduces long-term maintenance costs. Your coworkers care more about their home loans than technical debt. Everyone has their own problems to deal with.
+
+I still refactor my website mostly because I don't have a real job right now.
+
+
+## Migration with AI
+
+The migration itself was quite easy. Partly because Svelte’s concepts are basically just plain HTML and JavaScript. I only spent a few hours reading the Svelte documentation. To me, the data flow in Svelte isn’t that different from React. The biggest difference is that I no longer have to deal with JSX. (Svelte has its own “Runes,” but they feel much more straightforward to me.)
+
+Another reason is that AI agents are ridiculously powerful now. They can rewrite an entire project into a different framework with surprisingly little friction. AI also removes much of the pain of learning a new technology—you can learn from it like a teacher instead of reading through 300 pages of documentation..
+
+Most of the time, I simply told the agent to rewrite a file from React to Svelte. My role was mainly to review the output and make sure it didn’t do anything stupid. Sometimes it misunderstood my original design. Sometimes it used outdated patterns. AI is impressive, but human review is still necessary—we can’t assume a probabilistic token generator will always choose the correct token.
+
+I don’t really like the word "vibe", because it implies a lack of intentional thinking. The reality is that using AI effectively still requires deliberate thinking. You need to understand the fundamental structure of your code and verify that the AI hasn’t misunderstood your intent. AI can accelerate implementation, but it doesn’t replace design.
+
+## Simple is best
+
+I change my website design every year. My aesthetic taste keeps evolving.
+
+When I first got into web development, I loved fancy animations. I gave almost every element its own animation. It was chaos. Eventually, I realized it was unnecessarily complex—not just for me, but for the audience.
+
+Now I try to minimize effects and reduce information, keeping only the most important functionality. Simple is best.
+
+That said, I still add a few subtle animations—just enough to make the experience feel smoother. A small sliding arrow on hover, a gentle page transition. It makes the site feel more polished. Maybe it’s also just to convince myself that it’s better than plain HTML sites. (I’m joking. Kind of.)
+
+I still don’t think the current version is perfect. But it is what it is.
+
+I’ll wait until the next time I suddenly feel like it looks like trash—then I’ll probably rewrite it again.

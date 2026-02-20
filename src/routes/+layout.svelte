@@ -1,12 +1,13 @@
 <script lang="ts">
   import "./layout.css";
   import favicon from "$lib/assets/favicon.ico";
-  import { setContext } from "svelte";
+  import { onMount, setContext } from "svelte";
   import {
     childNavsContext,
     type ChildNav,
     type ChildNavSetter,
   } from "$lib/child-navs";
+  import { SunIcon, MoonIcon } from "@lucide/svelte";
 
   let { children } = $props();
 
@@ -18,6 +19,20 @@
   let childNavs: ChildNav[] = $state([]);
 
   let childNavsToken = 0;
+
+  let isDark = $state(false);
+
+  const applyTheme = (dark: boolean) => {
+    if (typeof document === "undefined") {
+      return;
+    }
+    document.documentElement.classList.toggle("dark", dark);
+  };
+
+  const setTheme = (dark: boolean) => {
+    isDark = dark;
+    applyTheme(dark);
+  };
 
   const setChildNavs: ChildNavSetter = (navs) => {
     childNavsToken += 1;
@@ -38,9 +53,11 @@
 
 <main
   id="nd-home-layout"
-  class="flex flex-1 flex-col px-4 lg:px-48 xl:px-72 bg-(--fd-background) min-h-screen"
+  class={"flex flex-1 flex-col px-4 lg:px-48 xl:px-72 bg-(--fd-background) text-(--fd-foreground) min-h-screen"}
 >
-  <header class="mb-4 border-(--fd-border) lg:mt-10">
+  <header
+    class="mb-4 border-(--fd-border) mt-10 flex items-center justify-between"
+  >
     <nav
       class="flex items-center gap-2 text-base font-bold text-(--fd-secondary-foreground)"
     >
@@ -66,6 +83,18 @@
         </a>
       {/if}
     </nav>
+    <button
+      type="button"
+      class="inline-flex items-center p-1 text-(--fd-foreground) transition hover:text-(--fd-primary)"
+      aria-pressed={isDark}
+      onclick={() => setTheme(!isDark)}
+    >
+      {#if isDark}
+        <MoonIcon class="size-5" />
+      {:else}
+        <SunIcon class="size-5" />
+      {/if}
+    </button>
   </header>
   {@render children()}
 </main>

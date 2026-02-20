@@ -26,7 +26,9 @@
     </p>
   </header>
 
-  <div class="prose prose-neutral mt-10 max-w-none font-serif">
+  <div
+    class="prose prose-neutral mt-10 max-w-none font-serif text-(--fd-foreground) prose-headings:text-(--fd-foreground)"
+  >
     {@render data.post.component()}
   </div>
 </article>

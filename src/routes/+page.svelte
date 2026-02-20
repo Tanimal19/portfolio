@@ -2,29 +2,10 @@
   import AnimateExternalLink from "../components/AnimateExternalLink.svelte";
   import AnimatePageLink from "../components/AnimatePageLink.svelte";
   import SectionBlock from "../components/landing/SectionBlock.svelte";
+  import { pageLinks, socialLinks, projectItems } from "$lib/config";
+  import ShowcaseBlock from "../components/landing/ShowcaseBlock.svelte";
 
-  const socials = [
-    {
-      href: "https://github.com/Tanimal19",
-      text: "Github",
-      colorhex: "#6cc644",
-    },
-    {
-      href: "https://www.linkedin.com/in/poyuncheng-bob/",
-      text: "LinkedIn",
-      colorhex: "#004182",
-    },
-    {
-      href: "https://www.instagram.com/_tanimal_x/",
-      text: "Instagram",
-      colorhex: "#FF0069",
-    },
-  ];
-
-  const pageLinks = [
-    { href: "/blog", text: "Writings" },
-    { href: "/poyuncheng_cv.pdf", text: "Resume" },
-  ];
+  let showColophon = false;
 </script>
 
 <main>
@@ -34,12 +15,11 @@
         <div class="max-w-2xl text-left flex flex-col gap-2">
           <p>
             Welcome to my website! I'm Bob Cheng (鄭博允 Po-Yun Cheng),
-            currently study
+            currently study computer science at
             <AnimateExternalLink
               href="https://www.csie.ntu.edu.tw/"
-              text="computer science"
-            />
-            at National Taiwan University.
+              text="National Taiwan University"
+            />.
           </p>
           <p>
             I love building things with quality code and nice design,
@@ -64,23 +44,31 @@
 
         <SectionBlock title="SOCIALS">
           <div class="flex flex-row gap-2 justify-center">
-            {#each socials as social}
+            {#each socialLinks as link}
               <a
-                href={social.href}
+                href={link.href}
                 target="_blank"
                 rel="noreferrer"
                 class="text-base group w-fit cursor-pointer flex flex-row items-center px-1 hover:underline"
               >
                 <span
                   class="size-2 inline-block mr-2"
-                  style={`background-color: ${social.colorhex}`}
+                  style={`background-color: ${link.colorhex}`}
                 ></span>
-                {social.text}
+                {link.text}
               </a>
             {/each}
           </div>
         </SectionBlock>
       </div>
+
+      <SectionBlock title="WORKS.SELECTED">
+        <div class="flex flex-col gap-4">
+          {#each projectItems as item}
+            <ShowcaseBlock {item} />
+          {/each}
+        </div>
+      </SectionBlock>
 
       <div class="w-fit flex flex-col items-start mt-2 lg:hidden">
         <div class="w-fit mb-1">
@@ -105,12 +93,23 @@
     </div>
   </div>
 
-  <div
-    class="flex flex-col items-end justify-center gap-2 mt-10 mb-20 text-fd-secondary-foreground font-mono text-xs"
-  >
-    <span class="size-2 inline-block bg-fd-foreground"></span>
-    <p>BOBCHENG 2025</p>
-    <p>SVELTEKIT, TAILWINDCSS</p>
-    <p>INTER, NOTOSERIF, JETBRAINS_MONO</p>
+  <div class="flex flex-col items-end justify-center gap-2 mt-10 mb-20">
+    <button
+      type="button"
+      aria-pressed={showColophon}
+      aria-label="Toggle colophon info"
+      on:click={() => (showColophon = !showColophon)}
+    >
+      <span
+        class="size-2 inline-block bg-(--fd-foreground) transition-transform duration-200 hover:scale-110"
+      ></span>
+    </button>
+    <div
+      class={`flex flex-col items-end justify-center gap-2 text-fd-secondary-foreground font-mono text-xs ${showColophon ? "block" : "hidden"}`}
+    >
+      <p>BOBCHENG 2026</p>
+      <p>W/ SVELTEKIT, TAILWIND</p>
+      <p>INTER, NOTOSERIF, JETBRAINS_MONO</p>
+    </div>
   </div>
 </main>

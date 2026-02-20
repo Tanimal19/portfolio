@@ -23,7 +23,9 @@ export type BlogPostWithComponent = BlogPost & {
   component: BlogModule["default"];
 };
 
-const postModules = import.meta.glob<BlogModule>("/src/content/blog/*.md");
+const postModules = import.meta.glob<BlogModule>(
+  "/src/content/blog/*.{svx,md}",
+);
 
 const normalizeTags = (tags?: string[]) =>
   (tags ?? []).map((tag) => tag.trim()).filter(Boolean);
@@ -45,7 +47,11 @@ export const getAllPosts = async (): Promise<BlogPost[]> => {
   const entries = await Promise.all(
     Object.entries(postModules).map(async ([path, resolver]) => {
       const module = await resolver();
-      const slug = path.split("/").pop()?.replace(".md", "") ?? "";
+      const slug =
+        path
+          .split("/")
+          .pop()
+          ?.replace(/\.(svx|md)$/, "") ?? "";
       return { slug, metadata: module.metadata };
     }),
   );
@@ -60,7 +66,7 @@ export const getPostBySlugWithComponent = async (
   slug: string,
 ): Promise<BlogPostWithComponent | null> => {
   const match = Object.entries(postModules).find(([path]) =>
-    path.endsWith(`/${slug}.md`),
+    path.endsWith(`/${slug}.svx`) || path.endsWith(`/${slug}.md`),
   );
 
   if (!match) return null;
