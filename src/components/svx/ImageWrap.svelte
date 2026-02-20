@@ -1,14 +1,21 @@
 <script lang="ts">
+  import { resolve } from "$app/paths";
+
   let {
     src,
     alt,
     width = 400,
     caption,
   }: { src: string; alt: string; width: number; caption: string } = $props();
+
+  const resolvedSrc = $derived.by(() => {
+    if (!src || !src.startsWith("/")) return src;
+    return resolve(src);
+  });
 </script>
 
 <figure class="my-6 flex w-full flex-col items-center">
-  <img class="rounded-md object-cover" {src} {alt} {width} />
+  <img class="rounded-md object-cover" src={resolvedSrc} {alt} {width} />
   {#if caption}
     <figcaption class="mt-2 text-sm text-(--fd-secondary-foreground)">
       {caption}

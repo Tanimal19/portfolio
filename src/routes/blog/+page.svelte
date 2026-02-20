@@ -2,6 +2,7 @@
   import type { PageData } from "./$types";
   import { page } from "$app/state";
   import { browser } from "$app/environment";
+  import { resolve } from "$app/paths";
   import { getContext, onDestroy } from "svelte";
   import { childNavsContext, type ChildNavSetter } from "$lib/child-navs";
 
@@ -43,7 +44,7 @@
                 ? "text-(--fd-secondary-foreground)"
                 : "text-(--fd-primary)"
             }`}
-            href="/blog"
+            href={resolve("/blog")}
           >
             All
           </a>
@@ -54,7 +55,7 @@
                   ? "text-(--fd-primary)"
                   : "text-(--fd-secondary-foreground)"
               }`}
-              href={`/blog?tags=${encodeURIComponent(tag.tag)}`}
+              href={`${resolve("/blog")}?tags=${encodeURIComponent(tag.tag)}`}
             >
               {tag.tag}[{tag.count}]
             </a>
@@ -87,7 +88,7 @@
           </div>
           <a
             class="text-lg font-semibold hover:underline hover:text-(--fd-primary) font-serif -translate-y-0.5"
-            href={`/blog/${post.slug}`}
+            href={`${resolve("/blog")}/${post.slug}`}
           >
             {post.title}
           </a>

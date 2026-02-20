@@ -1,10 +1,13 @@
 <script lang="ts">
   import type { PageData } from "./$types";
+  import { resolve } from "$app/paths";
   import { getContext, onDestroy } from "svelte";
   import { childNavsContext, type ChildNavSetter } from "$lib/child-navs";
 
   const setChildNavs = getContext<ChildNavSetter | undefined>(childNavsContext);
-  const clearChildNavs = setChildNavs?.([{ title: "Writings", url: "/blog" }]);
+  const clearChildNavs = setChildNavs?.([
+    { title: "Writings", url: resolve("/blog") },
+  ]);
   onDestroy(() => {
     clearChildNavs?.();
   });

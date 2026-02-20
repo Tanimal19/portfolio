@@ -4,8 +4,14 @@
   import SectionBlock from "../components/landing/SectionBlock.svelte";
   import { pageLinks, socialLinks, projectItems } from "$lib/config";
   import ShowcaseBlock from "../components/landing/ShowcaseBlock.svelte";
+  import { resolve } from "$app/paths";
 
   let showColophon = false;
+
+  const pageLinksWithBase = pageLinks.map((link) => ({
+    ...link,
+    href: link.href.startsWith("/") ? resolve(link.href) : link.href,
+  }));
 </script>
 
 <main>
@@ -79,7 +85,7 @@
           </p>
         </div>
         <div class="flex flex-row gap-6 justify-center">
-          {#each pageLinks as link}
+          {#each pageLinksWithBase as link}
             <a href={link.href} class="underline">{link.text}</a>
           {/each}
         </div>
@@ -87,7 +93,7 @@
     </div>
 
     <div class="w-fit hidden lg:flex flex-col items-start mt-2">
-      {#each pageLinks as link}
+      {#each pageLinksWithBase as link}
         <AnimatePageLink href={link.href} text={link.text} />
       {/each}
     </div>

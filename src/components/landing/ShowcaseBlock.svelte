@@ -1,11 +1,20 @@
 <script lang="ts">
   import type { ProjectItem } from "$lib/config";
+  import { resolve } from "$app/paths";
 
   let { item }: { item: ProjectItem } = $props();
 
   let hover = $state(false);
   let self: HTMLDivElement | null = $state(null);
   let contentTranslate = $state({ x: 0, y: 0 });
+
+  const resolvePath = (path?: string) => {
+    if (!path || !path.startsWith("/")) return path;
+    return resolve(path);
+  };
+
+  const previewImage = $derived.by(() => resolvePath(item.previewImage));
+  const previewVideo = $derived.by(() => resolvePath(item.previewVideo));
 
   function handleMouseMove(e: MouseEvent) {
     const rect = self?.getBoundingClientRect();
@@ -41,7 +50,7 @@
     <div
       style={`transform: translateX(${contentTranslate.x}px) translateY(${contentTranslate.y}px); transition: transform 0.2s ease-out; will-change: transform;`}
     >
-      {#if item.previewVideo}
+      {#if previewVideo}
         <video
           class="max-w-[80lvw] max-h-[80vh] 2xl:max-h-[60vh] inline-flex items-center rounded-md p-2 bg-black/50"
           preload="auto"
@@ -50,14 +59,14 @@
           muted
           playsinline
         >
-          <source src={item.previewVideo} type="video/mp4" />
+          <source src={previewVideo} type="video/mp4" />
           Sorry, your browser does not support the video tag.
         </video>
       {/if}
-      {#if item.previewImage}
+      {#if previewImage}
         <img
           class="max-w-[60lvw] max-h-[80vh] 2xl:max-h-[60vh] rounded-md p-2 bg-black/50"
-          src={item.previewImage}
+          src={previewImage}
           alt={item.title}
         />
       {/if}
