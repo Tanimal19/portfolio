@@ -39,7 +39,7 @@ When I first got into web development, I loved fancy animations. I gave almost e
 
 Now I try to minimize effects and reduce information, keeping only the most important functionality. Simple is best.
 
-That said, I still add a few subtle animations—just enough to make the experience feel smoother. A small sliding arrow on hover, a gentle page transition. It makes the site feel more polished. Maybe it’s also just to convince myself that it’s better than plain HTML sites. (I’m joking. Kind of.)
+That said, I still add a few subtle animations—just enough to make the experience feel smoother. A small sliding arrow on hover, a gentle page transition. It makes the site feel more polished. Maybe it’s also just to convince myself that it’s better than plain HTML sites. (I’m joking.)
 
 I still don’t think the current version is perfect. But it is what it is.
 
