@@ -1,7 +1,7 @@
 <script lang="ts">
   import "./layout.css";
   import favicon from "$lib/assets/favicon.ico";
-  import { onMount, setContext } from "svelte";
+  import { setContext } from "svelte";
   import {
     childNavsContext,
     type ChildNav,
