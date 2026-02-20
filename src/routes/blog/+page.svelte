@@ -1,5 +1,7 @@
 <script lang="ts">
   import type { PageData } from "./$types";
+  import { page } from "$app/state";
+  import { browser } from "$app/environment";
   import { getContext, onDestroy } from "svelte";
   import { childNavsContext, type ChildNavSetter } from "$lib/child-navs";
 
@@ -10,6 +12,17 @@
   });
 
   let { data }: { data: PageData } = $props();
+
+  const activeTag = $derived.by(() =>
+    browser ? (page.url.searchParams.get("tags") ?? "").trim() : "",
+  );
+  const filteredPosts = $derived.by(() => {
+    if (!activeTag) return data.posts;
+    const activeLower = activeTag.toLowerCase();
+    return data.posts.filter((post) =>
+      post.tags?.some((tag) => tag.toLowerCase() === activeLower),
+    );
+  });
 
   const formatDate = (value: string) =>
     new Date(value).toLocaleDateString("en-US", {
@@ -26,7 +39,7 @@
         <div class="flex flex-wrap gap-3 text-sm font-medium">
           <a
             class={`hover:text-(--fd-primary) ${
-              data.activeTag
+              activeTag
                 ? "text-(--fd-secondary-foreground)"
                 : "text-(--fd-primary)"
             }`}
@@ -37,7 +50,7 @@
           {#each data.tags as tag}
             <a
               class={`hover:text-(--fd-primary) ${
-                data.activeTag?.toLowerCase() === tag.tag.toLowerCase()
+                activeTag.toLowerCase() === tag.tag.toLowerCase()
                   ? "text-(--fd-primary)"
                   : "text-(--fd-secondary-foreground)"
               }`}
@@ -52,12 +65,12 @@
   </header>
 
   <div class="mt-10 space-y-6">
-    {#if data.posts.length === 0}
+    {#if filteredPosts.length === 0}
       <p class="text-(--fd-secondary-foreground)">
-        {data.activeTag ? "No posts for this tag yet." : "No posts yet."}
+        {activeTag ? "No posts for this tag yet." : "No posts yet."}
       </p>
     {:else}
-      {#each data.posts as post}
+      {#each filteredPosts as post}
         <article class="flex flex-row items-center relative">
           {#if post.language !== "en"}
             <div
