@@ -10,9 +10,25 @@ export type ProjectItem = {
 
 export const projectItems: ProjectItem[] = [
   {
-    title: "HeadTurner",
+    title: "LLM-CR",
+    description: "LLM code review application. (course project)",
+    year: 2026,
+    link: "https://github.com/Tanimal19/llmcr",
+    previewImage: "",
+    showOnLanding: false,
+  },
+  {
+    title: "Gesture Desktop Control",
     description:
-      "research on enhancing lying-down VR experience via assisted body actuation (role: study design & data)",
+      "HCI research on gesture-base desktop control system. (course project)",
+    year: 2025,
+    link: "https://github.com/Tanimal19/gesture_desktop_control",
+    previewImage: "",
+    showOnLanding: false,
+  },
+  {
+    title: "HeadTurner",
+    description: "HCI research on lying-down VR experience. (research)",
     year: 2025,
     link: "https://dl.acm.org/doi/10.1145/3706598.3714214",
     previewImage: "/project-previews/headturner.png",
@@ -20,7 +36,7 @@ export const projectItems: ProjectItem[] = [
   },
   {
     title: "DataCenterManager",
-    description: "web app to manage data center resources (role: full-stack)",
+    description: "Web app to manage data center resources. (course project)",
     year: 2025,
     link: "https://github.com/Tanimal19/DCM",
     previewVideo: "/project-previews/dcm-demo.mp4",
@@ -28,7 +44,7 @@ export const projectItems: ProjectItem[] = [
   },
   {
     title: "ONGAKU",
-    description: "website to listen youtube music with lyrics",
+    description: "Website to listen youtube music with lyrics. (side project)",
     year: 2025,
     link: "https://github.com/Tanimal19/ongaku",
     previewVideo: "/project-previews/ongaku-demo.mp4",
@@ -36,7 +52,7 @@ export const projectItems: ProjectItem[] = [
   },
   {
     title: "Nasa-TLX Calculator",
-    description: "online calculator for NASA-TLX questionnaire",
+    description: "Online calculator for NASA-TLX questionnaire. (side project)",
     year: 2024,
     link: "https://github.com/Tanimal19/nasa-tlx-calculator",
     previewVideo: "/project-previews/nasatlx-demo.mp4",
@@ -75,5 +91,5 @@ export type PageLink = {
 
 export const pageLinks: PageLink[] = [
   { href: "/blog", text: "Writings" },
-  { href: "/cv.pdf", text: "Resume" },
+  { href: "/resume.pdf", text: "Resume" },
 ];

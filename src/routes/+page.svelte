@@ -28,7 +28,7 @@
             />.
           </p>
           <p>
-            I love building things with quality code and nice design,
+            I love building things with quality code and nice design, recently
             interesting in human-computer interaction, software engineering and
             AI stuffs.
           </p>
