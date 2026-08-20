@@ -11,24 +11,25 @@ export type ProjectItem = {
 export const projectItems: ProjectItem[] = [
   {
     title: "LLM-CR",
-    description: "LLM code review application. (course project)",
+    description: "Multi-agent code review system. (research@NTU SE lab)",
     year: 2026,
     link: "https://github.com/Tanimal19/llmcr",
-    previewImage: "",
-    showOnLanding: false,
+    previewImage: "/project-previews/llmcr.png",
+    showOnLanding: true,
   },
   {
     title: "Gesture Desktop Control",
     description:
-      "HCI research on gesture-base desktop control system. (course project)",
+      "HCI research on gesture-base desktop control system. (EECS255@UC Merced)",
     year: 2025,
     link: "https://github.com/Tanimal19/gesture_desktop_control",
-    previewImage: "",
-    showOnLanding: false,
+    previewImage: "/project-previews/gesture.png",
+    showOnLanding: true,
   },
   {
     title: "HeadTurner",
-    description: "HCI research on lying-down VR experience. (research)",
+    description:
+      "HCI research on lying-down VR experience. (research@NTU HCI lab)",
     year: 2025,
     link: "https://dl.acm.org/doi/10.1145/3706598.3714214",
     previewImage: "/project-previews/headturner.png",
@@ -36,7 +37,7 @@ export const projectItems: ProjectItem[] = [
   },
   {
     title: "DataCenterManager",
-    description: "Web app to manage data center resources. (course project)",
+    description: "Web app to manage data center resources. (CSIE5217@NTU)",
     year: 2025,
     link: "https://github.com/Tanimal19/DCM",
     previewVideo: "/project-previews/dcm-demo.mp4",
@@ -44,19 +45,19 @@ export const projectItems: ProjectItem[] = [
   },
   {
     title: "ONGAKU",
-    description: "Website to listen youtube music with lyrics. (side project)",
+    description: "Website to listen youtube music with lyrics. (frontend toy)",
     year: 2025,
     link: "https://github.com/Tanimal19/ongaku",
     previewVideo: "/project-previews/ongaku-demo.mp4",
-    showOnLanding: true,
+    showOnLanding: false,
   },
   {
     title: "Nasa-TLX Calculator",
-    description: "Online calculator for NASA-TLX questionnaire. (side project)",
+    description: "Online calculator for NASA-TLX questionnaire. (frontend toy)",
     year: 2024,
     link: "https://github.com/Tanimal19/nasa-tlx-calculator",
     previewVideo: "/project-previews/nasatlx-demo.mp4",
-    showOnLanding: true,
+    showOnLanding: false,
   },
 ];
 
@@ -91,5 +92,5 @@ export type PageLink = {
 
 export const pageLinks: PageLink[] = [
   { href: "/blog", text: "Writings" },
-  { href: "/resume.pdf", text: "Resume" },
+  { href: "/poyuncheng_cv.pdf", text: "Curriculum Vitae" },
 ];

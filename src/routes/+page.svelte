@@ -17,28 +17,29 @@
 <main>
   <div class="relative flex flex-col lg:flex-row lg:gap-30">
     <div class="flex flex-col gap-4 lg:gap-8 mb-8">
-      <div class="w-fit flex flex-col items-start mt-2">
+      <div class="w-fit flex flex-row items-start mt-2 gap-8">
+        <img class="w-40" src="/head.jpg" alt="Me" />
         <div class="max-w-2xl text-left flex flex-col gap-2">
           <p>
-            Welcome to my website! I'm Bob Cheng (鄭博允 Po-Yun Cheng),
-            currently study computer science at
-            <AnimateExternalLink
+            Hi, I'm Bob Cheng (mandarin: 鄭博允, Po-Yun Cheng), a recent
+            Computer Science graduate from <AnimateExternalLink
               href="https://www.csie.ntu.edu.tw/"
               text="National Taiwan University"
-            />.
+            />, currently preparing for PhD applications in Software Engineering
+            and Human-Computer Interaction.
           </p>
           <p>
-            I love building things with quality code and nice design, recently
-            interesting in human-computer interaction, software engineering and
-            AI stuffs.
+            My broad research goal is to make software development effortless
+            and sustainable, specifically, 1) concentrating human attention on
+            the judgments only humans can be accountable for and 2) reducing the
+            rework that accumulates as systems evolve.
           </p>
           <p>
-            Reach me at
+            Please contact me at
             <AnimateExternalLink
               href="mailto:poyuncheng.bob@gmail.com"
               text="poyuncheng.bob@gmail.com"
-            />
-            if you have any ideas or suggestions.
+            />.
           </p>
         </div>
       </div>
@@ -50,7 +51,7 @@
 
         <SectionBlock title="SOCIALS">
           <div class="flex flex-row gap-2 justify-center">
-            {#each socialLinks as link}
+            {#each socialLinks as link (link.href)}
               <a
                 href={link.href}
                 target="_blank"
@@ -70,8 +71,10 @@
 
       <SectionBlock title="WORKS.SELECTED">
         <div class="flex flex-col gap-4">
-          {#each projectItems as item}
-            <ShowcaseBlock {item} />
+          {#each projectItems as item (item.link)}
+            {#if item.showOnLanding}
+              <ShowcaseBlock {item} />
+            {/if}
           {/each}
         </div>
       </SectionBlock>
@@ -85,7 +88,7 @@
           </p>
         </div>
         <div class="flex flex-row gap-6 justify-center">
-          {#each pageLinksWithBase as link}
+          {#each pageLinksWithBase as link (link.href)}
             <a href={link.href} class="underline">{link.text}</a>
           {/each}
         </div>
@@ -93,7 +96,7 @@
     </div>
 
     <div class="w-fit hidden lg:flex flex-col items-start mt-2">
-      {#each pageLinksWithBase as link}
+      {#each pageLinksWithBase as link (link.href)}
         <AnimatePageLink href={link.href} text={link.text} />
       {/each}
     </div>
@@ -111,11 +114,18 @@
       ></span>
     </button>
     <div
-      class={`flex flex-col items-end justify-center gap-2 text-fd-secondary-foreground font-mono text-xs ${showColophon ? "block" : "hidden"}`}
+      class={`flex flex-col items-end justify-center gap-1 text-fd-secondary-foreground font-mono text-xs ${showColophon ? "block" : "hidden"}`}
     >
       <p>BOBCHENG 2026</p>
-      <p>W/ SVELTEKIT, TAILWIND</p>
-      <p>INTER, NOTOSERIF, JETBRAINS_MONO</p>
+      <p>INTER, NOTOSANS, JETBRAINS_MONO</p>
+      <p>
+        Design inspired from
+        <a href="https://www.seyityilmaz.com/" class="underline">Seyit Yilmaz</a
+        >,
+        <a href="https://www.alexchantastic.com/" class="underline">Alex Chan</a
+        >,
+        <a href="https://antfu.me/" class="underline">Anthony Fu</a>
+      </p>
     </div>
   </div>
 </main>

@@ -87,7 +87,7 @@
             {formatDate(post.date)}
           </div>
           <a
-            class="text-lg font-semibold hover:underline hover:text-(--fd-primary) font-serif -translate-y-0.5"
+            class="text-lg font-medium hover:underline hover:text-(--fd-primary) font-sans -translate-y-0.5"
             href={`${resolve("/blog")}/${post.slug}`}
           >
             {post.title}
