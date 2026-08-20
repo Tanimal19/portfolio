@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { resolve } from "$app/paths";
+  import { asset } from "$app/paths";
 
   let {
     src,
@@ -10,7 +10,7 @@
 
   const resolvedSrc = $derived.by(() => {
     if (!src || !src.startsWith("/")) return src;
-    return resolve(src);
+    return asset(src);
   });
 </script>
 

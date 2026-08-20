@@ -1,3 +1,5 @@
+import type { Component } from "svelte";
+
 export type BlogFrontmatter = {
   title: string;
   date: string;
@@ -8,7 +10,7 @@ export type BlogFrontmatter = {
 
 type BlogModule = {
   metadata: BlogFrontmatter;
-  default: unknown;
+  default: Component;
 };
 
 export type BlogPost = {
@@ -23,9 +25,12 @@ export type BlogPostWithComponent = BlogPost & {
   component: BlogModule["default"];
 };
 
-const postModules = import.meta.glob<BlogModule>(
+// Files prefixed with "_" are drafts: excluded from the glob so they are
+// neither listed nor bundled, and their slugs 404.
+const postModules = import.meta.glob<BlogModule>([
   "/src/content/blog/*.{svx,md}",
-);
+  "!/src/content/blog/_*",
+]);
 
 const normalizeTags = (tags?: string[]) =>
   (tags ?? []).map((tag) => tag.trim()).filter(Boolean);

@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { ProjectItem } from "$lib/config";
-  import { resolve } from "$app/paths";
+  import { asset } from "$app/paths";
 
   let { item }: { item: ProjectItem } = $props();
 
@@ -10,7 +10,7 @@
 
   const resolvePath = (path?: string) => {
     if (!path || !path.startsWith("/")) return path;
-    return resolve(path);
+    return asset(path);
   };
 
   const previewImage = $derived.by(() => resolvePath(item.previewImage));
@@ -37,7 +37,12 @@
   onmouseleave={() => (hover = false)}
   onmousemove={handleMouseMove}
 >
-  <a href={item.link || "#"} target="_blank" class="flex flex-col">
+  <a
+    href={item.link || "#"}
+    target="_blank"
+    rel="noreferrer external"
+    class="flex flex-col"
+  >
     {item.title}
     <p class="text-sm text-(--fd-secondary-foreground)">{item.description}</p>
   </a>

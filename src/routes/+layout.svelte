@@ -12,9 +12,11 @@
 
   let { children } = $props();
 
+  const rootUrl = resolve("/");
+
   const rootNav = {
     title: "Bob Cheng",
-    url: resolve("/"),
+    url: rootUrl,
   };
 
   let childNavs: ChildNav[] = $state([]);
@@ -54,7 +56,7 @@
 
 <main
   id="nd-home-layout"
-  class={"flex flex-1 flex-col px-4 lg:px-48 xl:px-72 bg-(--fd-background) text-(--fd-foreground) min-h-screen"}
+  class="flex flex-1 flex-col px-4 lg:px-48 xl:px-72 bg-(--fd-background) text-(--fd-foreground) min-h-screen"
 >
   <header
     class="mb-4 border-(--fd-border) mt-10 flex items-center justify-between"
@@ -63,11 +65,13 @@
       class="flex items-center gap-2 text-base font-bold text-(--fd-secondary-foreground)"
     >
       {#if childNavs.length}
-        <a href={rootNav.url} class="hover:text-(--fd-primary)">
+        <a href={rootUrl} class="hover:text-(--fd-primary)">
           {rootNav.title}
         </a>
         <span>/</span>
-        {#each childNavs as nav, i}
+        {#each childNavs as nav, i (nav.url)}
+          <!-- nav.url comes pre-resolved from the page that sets it -->
+          <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
           <a href={nav.url} class="hover:text-(--fd-primary)">
             {nav.title}
           </a>
@@ -77,7 +81,7 @@
         {/each}
       {:else}
         <a
-          href={rootNav.url}
+          href={rootUrl}
           class="text-(--fd-foreground) hover:text-(--fd-primary)"
         >
           {rootNav.title}

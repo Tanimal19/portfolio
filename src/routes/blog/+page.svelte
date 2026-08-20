@@ -48,14 +48,15 @@
           >
             All
           </a>
-          {#each data.tags as tag}
-            <a
+          {#each data.tags as tag (tag.tag)}
+            <!-- resolve() cannot express a query string; the path itself is resolved -->
+            <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+            <a href={`${resolve("/blog")}?tags=${encodeURIComponent(tag.tag)}`}
               class={`hover:text-(--fd-primary) ${
                 activeTag.toLowerCase() === tag.tag.toLowerCase()
                   ? "text-(--fd-primary)"
                   : "text-(--fd-secondary-foreground)"
               }`}
-              href={`${resolve("/blog")}?tags=${encodeURIComponent(tag.tag)}`}
             >
               {tag.tag}[{tag.count}]
             </a>
@@ -71,7 +72,7 @@
         {activeTag ? "No posts for this tag yet." : "No posts yet."}
       </p>
     {:else}
-      {#each filteredPosts as post}
+      {#each filteredPosts as post (post.slug)}
         <article class="flex flex-row items-center relative">
           {#if post.language !== "en"}
             <div
@@ -88,7 +89,7 @@
           </div>
           <a
             class="text-lg font-medium hover:underline hover:text-(--fd-primary) font-sans -translate-y-0.5"
-            href={`${resolve("/blog")}/${post.slug}`}
+            href={resolve("/blog/[slug]", { slug: post.slug })}
           >
             {post.title}
           </a>

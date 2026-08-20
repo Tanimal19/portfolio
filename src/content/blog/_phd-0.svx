@@ -1,0 +1,16 @@
+---
+title: "Ah, Yes, PhD (0): Motivation"
+date: 2026-08-20
+tags:
+  - college
+language: "中文"
+---
+
+<script>
+	import ImageWrap from "../../components/svx/ImageWrap.svelte";
+</script>
+
+After four years sleeping, I graduate from National Taiwan University. Most of my friends are just directly go to the  master program in our school or finding a job.
+
+When I was still sophomore, I think that I will just directly go to the industry be a software engineer, that the safe and stable path for student like us. But you now, AI comes out, and everything changes, it's not easy anymore to find a job for a CS students. While it's not that hard to find a job here in Taiwan, but I found that most of the job is just not I like. Most of the software job in Taiwan is writing firmware for semiconductor or eletrical devices (Yes, these industry contribute to maybe 50% of GDP of our country, crazy). And that also make most of the laboratory in NTU focus in OS, security, machine learning algorithm ... Very small of them doing HCI or SE.
+

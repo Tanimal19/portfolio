@@ -4,13 +4,13 @@
   import SectionBlock from "../components/landing/SectionBlock.svelte";
   import { pageLinks, socialLinks, projectItems } from "$lib/config";
   import ShowcaseBlock from "../components/landing/ShowcaseBlock.svelte";
-  import { resolve } from "$app/paths";
+  import { asset, resolve } from "$app/paths";
 
   let showColophon = false;
 
   const pageLinksWithBase = pageLinks.map((link) => ({
-    ...link,
-    href: link.href.startsWith("/") ? resolve(link.href) : link.href,
+    text: link.text,
+    href: link.kind === "asset" ? asset(link.href) : resolve(link.href),
   }));
 </script>
 
@@ -18,7 +18,7 @@
   <div class="relative flex flex-col lg:flex-row lg:gap-30">
     <div class="flex flex-col gap-4 lg:gap-8 mb-8">
       <div class="w-fit flex flex-row items-start mt-2 gap-8">
-        <img class="w-40" src="/head.jpg" alt="Me" />
+        <img class="w-40" src={asset("/head.jpg")} alt="Me" />
         <div class="max-w-2xl text-left flex flex-col gap-2">
           <p>
             Hi, I'm Bob Cheng (mandarin: 鄭博允, Po-Yun Cheng), a recent
@@ -55,7 +55,7 @@
               <a
                 href={link.href}
                 target="_blank"
-                rel="noreferrer"
+                rel="noreferrer external"
                 class="text-base group w-fit cursor-pointer flex flex-row items-center px-1 hover:underline"
               >
                 <span
@@ -89,6 +89,8 @@
         </div>
         <div class="flex flex-row gap-6 justify-center">
           {#each pageLinksWithBase as link (link.href)}
+            <!-- href is already resolved above via resolve()/asset() -->
+            <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
             <a href={link.href} class="underline">{link.text}</a>
           {/each}
         </div>

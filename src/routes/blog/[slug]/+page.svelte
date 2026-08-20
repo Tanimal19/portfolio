@@ -14,6 +14,8 @@
 
   let { data }: { data: PageData } = $props();
 
+  const PostContent = $derived(data.post.component);
+
   const formatDate = (value: string) =>
     new Date(value).toLocaleDateString("en-US", {
       year: "numeric",
@@ -32,6 +34,6 @@
   <div
     class="prose prose-neutral mt-10 max-w-none font-sans text-(--fd-foreground) prose-headings:text-(--fd-foreground)"
   >
-    {@render data.post.component()}
+    <PostContent />
   </div>
 </article>

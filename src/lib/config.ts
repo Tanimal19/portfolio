@@ -1,17 +1,19 @@
+import type { Asset, Pathname } from "$app/types";
+
 export type ProjectItem = {
   title: string;
   description: string;
   year: number;
   link: string;
-  previewImage?: string;
-  previewVideo?: string;
+  previewImage?: Asset;
+  previewVideo?: Asset;
   showOnLanding: boolean;
 };
 
 export const projectItems: ProjectItem[] = [
   {
-    title: "LLM-CR",
-    description: "Multi-agent code review system. (research@NTU SE lab)",
+    title: "LLMCR",
+    description: "Multi-agent code review system. (research @ NTU SE lab)",
     year: 2026,
     link: "https://github.com/Tanimal19/llmcr",
     previewImage: "/project-previews/llmcr.png",
@@ -85,12 +87,11 @@ export const socialLinks: SocialLink[] = [
   },
 ];
 
-export type PageLink = {
-  href: string;
-  text: string;
-};
+export type PageLink =
+  | { kind: "page"; href: Pathname; text: string }
+  | { kind: "asset"; href: Asset; text: string };
 
 export const pageLinks: PageLink[] = [
-  { href: "/blog", text: "Writings" },
-  { href: "/poyuncheng_cv.pdf", text: "Curriculum Vitae" },
+  { kind: "page", href: "/blog", text: "Writings" },
+  { kind: "asset", href: "/poyuncheng_cv.pdf", text: "Curriculum Vitae" },
 ];

@@ -3,8 +3,9 @@
   let props = $props();
 </script>
 
-<a
-  href={props.href}
+<!-- href is already resolved by the caller (resolve()/asset()) -->
+<!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+<a href={props.href}
   class="hover:underline hover:decoration-(--fd-foreground) group flex items-center"
 >
   {props.text}<span class="overflow-hidden relative size-4 inline-block ml-2">

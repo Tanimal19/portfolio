@@ -6,6 +6,7 @@
 <a
   href={props.href}
   target="_blank"
+  rel="noreferrer external"
   class="underline decoration-(--fd-accent-foreground)/50 hover:decoration-(--fd-accent-foreground) group"
 >
   {props.text}<span class="overflow-hidden relative size-4 inline-block">
