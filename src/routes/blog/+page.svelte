@@ -7,7 +7,7 @@
   import { childNavsContext, type ChildNavSetter } from "$lib/child-navs";
 
   const setChildNavs = getContext<ChildNavSetter | undefined>(childNavsContext);
-  const clearChildNavs = setChildNavs?.([{ title: "", url: "" }]);
+  const clearChildNavs = setChildNavs?.([{ title: "Writings", url: resolve("/blog") }]);
   onDestroy(() => {
     clearChildNavs?.();
   });
@@ -34,7 +34,6 @@
 
 <section>
   <header class="space-y-3">
-    <h1 class="text-3xl font-semibold">Writings</h1>
     <div class="flex flex-col items-start gap-2">
       {#if data.tags.length}
         <div class="flex flex-wrap gap-3 text-sm font-medium">

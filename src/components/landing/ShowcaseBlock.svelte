@@ -1,8 +1,12 @@
 <script lang="ts">
-  import type { ProjectItem } from "$lib/config";
+  import { authorSelf, type ProjectItem } from "$lib/config";
   import { asset } from "$app/paths";
+  import { TrophyIcon } from "@lucide/svelte";
 
   let { item }: { item: ProjectItem } = $props();
+
+  const chipClass =
+    "inline-block px-1 font-mono text-xs text-(--fd-secondary-foreground) bg-(--fd-secondary) rounded";
 
   let hover = $state(false);
   let self: HTMLDivElement | null = $state(null);
@@ -43,8 +47,27 @@
     rel="noreferrer external"
     class="flex flex-col"
   >
-    {item.title}
-    <p class="text-sm text-(--fd-secondary-foreground)">{item.description}</p>
+    <span class="flex flex-row items-baseline gap-2">
+      <span class="shrink-0 flex flex-row items-baseline gap-1">
+        <span class={chipClass}>{item.category}</span>
+        {#if item.award}
+          <span class={chipClass}>
+            <TrophyIcon class="size-3 inline-block mr-1 align-[-0.15em]" />{item.award}
+          </span>
+        {/if}
+      </span>
+      <span>{item.title}</span>
+    </span>
+    {#if item.authors}
+      <p class="text-sm text-(--fd-secondary-foreground)">
+        {#each item.authors as author, i (author)}<span
+            class={author === authorSelf ? "font-bold" : ""}>{author}</span
+          >{i === item.authors.length - 1 ? "." : ", "}{/each}
+      </p>
+    {/if}
+    <p class="text-sm text-(--fd-secondary-foreground) whitespace-pre-line">
+      {item.description}
+    </p>
   </a>
 
   <div

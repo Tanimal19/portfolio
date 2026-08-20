@@ -15,7 +15,7 @@
   const rootUrl = resolve("/");
 
   const rootNav = {
-    title: "Bob Cheng",
+    title: "Po-Yun Cheng",
     url: rootUrl,
   };
 
@@ -72,7 +72,12 @@
         {#each childNavs as nav, i (nav.url)}
           <!-- nav.url comes pre-resolved from the page that sets it -->
           <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-          <a href={nav.url} class="hover:text-(--fd-primary)">
+          <a
+            href={nav.url}
+            class={`hover:text-(--fd-primary) ${
+              i === childNavs.length - 1 ? "text-(--fd-foreground)" : ""
+            }`}
+          >
             {nav.title}
           </a>
           {#if i !== childNavs.length - 1}
