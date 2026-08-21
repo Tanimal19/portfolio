@@ -56,6 +56,9 @@
   --fd-border: var(--color-base-150);
   --fd-ring: var(--color-magenta-400);
 
+  --fd-gold: rgb(146, 104, 20);
+  --fd-gold-background: rgb(250, 236, 202);
+
   /* animation */
   --animation-slide-right: slide-right 0.5s ease-in-out forwards;
   --animation-slide-top-right: slide-top-right 0.5s ease-in-out forwards;
@@ -78,6 +81,9 @@
 
   --fd-border: var(--color-base-800);
   --fd-ring: var(--color-magenta-400);
+
+  --fd-gold: rgb(224, 184, 96);
+  --fd-gold-background: rgb(56, 42, 14);
 }
 
 @keyframes slide-in {

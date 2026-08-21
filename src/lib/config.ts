@@ -80,7 +80,7 @@ export const projectItems: ProjectItem[] = [
     category: "course",
     link: "https://github.com/Tanimal19/DCM",
     previewVideo: "/project-previews/dcm-demo.mp4",
-    showOnLanding: true,
+    showOnLanding: false,
   },
   {
     title: "ONGAKU",
@@ -131,7 +131,7 @@ export type PageLink =
   | { kind: "asset"; href: Asset; text: string };
 
 export const pageLinks: PageLink[] = [
-  { kind: "page", href: "/works", text: "All Works" },
+  { kind: "page", href: "/works", text: "Works" },
   { kind: "page", href: "/blog", text: "Writings" },
   { kind: "asset", href: "/poyuncheng_cv.pdf", text: "Curriculum Vitae" },
 ];

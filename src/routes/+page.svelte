@@ -1,25 +1,21 @@
 <script lang="ts">
   import AnimateExternalLink from "../components/AnimateExternalLink.svelte";
-  import AnimatePageLink from "../components/AnimatePageLink.svelte";
   import SectionBlock from "../components/landing/SectionBlock.svelte";
-  import { pageLinks, socialLinks, projectItems } from "$lib/config";
+  import { socialLinks, projectItems } from "$lib/config";
   import ShowcaseBlock from "../components/landing/ShowcaseBlock.svelte";
-  import { asset, resolve } from "$app/paths";
+  import { asset } from "$app/paths";
 
   let showColophon = false;
-
-  const pageLinksWithBase = pageLinks.map((link) => ({
-    text: link.text,
-    href: link.kind === "asset" ? asset(link.href) : resolve(link.href),
-  }));
 </script>
 
 <main>
   <div class="flex flex-col gap-4 lg:gap-8 mb-8">
-    <div class="flex flex-col lg:flex-row lg:gap-30">
+    <div class="flex flex-col">
       <div class="flex flex-col gap-4 lg:gap-8">
-        <div class="flex flex-row items-start mt-2 gap-8">
-          <img class="w-40" src={asset("/head.jpg")} alt="Me" />
+        <div
+          class="flex flex-col sm:flex-row items-start mt-2 gap-4 sm:gap-8"
+        >
+          <img class="w-28 sm:w-40" src={asset("/head.jpg")} alt="Me" />
           <div class="max-w-2xl text-left flex flex-col gap-2">
             <p>
               Hi, I'm Po-Yun Cheng (mandarin: 鄭博允), a recent Computer Science
@@ -30,21 +26,20 @@
               Engineering and Human-Computer Interaction.
             </p>
             <p>
-              My broad research goal is to <strong>
-                make software development effortless and sustainable
-              </strong>, at the intersection of Software Engineering and
-              Human-Computer Interaction. I'm currently interested in 1)
-              reducing human effort in verifying AI-generated artifacts—since
-              only humans can be held accountable for final results—and 2)
-              reducing the rework that accumulates as systems evolve, especially
-              when AI artifacts are produced at massive scale.
+              My broad research goal is to <strong
+                >reduce the human effort and computational cost of software
+                development and maintenance</strong
+              >. Specifically, I am currently interested in whether AI agents
+              and humans need different code representations or development
+              processes to collaborate efficiently, and whether we can
+              systematically bridge them.
             </p>
             <p>
               Contact:
               <AnimateExternalLink
                 href="mailto:poyuncheng.bob@gmail.com"
                 text="poyuncheng.bob@gmail.com"
-              />.
+              />
             </p>
           </div>
         </div>
@@ -73,12 +68,6 @@
             </div>
           </SectionBlock>
         </div>
-      </div>
-
-      <div class="w-fit flex flex-col items-start mt-2">
-        {#each pageLinksWithBase as link (link.href)}
-          <AnimatePageLink href={link.href} text={link.text} />
-        {/each}
       </div>
     </div>
 

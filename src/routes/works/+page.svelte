@@ -25,6 +25,7 @@
 
   let activeYear: number | null = $state(null);
   let activeCategory: ProjectCategory | null = $state(null);
+  let showPreview = $state(true);
 
   const filteredItems = $derived.by(() =>
     projectItems
@@ -102,6 +103,22 @@
           </button>
         {/each}
       </div>
+
+      <div class="flex flex-wrap items-baseline gap-3 text-sm font-medium">
+        <span
+          class="text-[0.7em] font-bold text-(--fd-secondary-foreground) font-mono w-14"
+        >
+          PREVIEW
+        </span>
+        <button
+          type="button"
+          aria-pressed={showPreview}
+          class={filterClass(showPreview)}
+          onclick={() => (showPreview = !showPreview)}
+        >
+          {showPreview ? "On" : "Off"}
+        </button>
+      </div>
     </div>
   </header>
 
@@ -121,7 +138,7 @@
 
         {#each group.items as item (item.link)}
           <div class="flex flex-row items-start gap-4">
-            <ShowcaseBlock {item} />
+            <ShowcaseBlock {item} preview={showPreview} />
           </div>
         {/each}
       {/each}

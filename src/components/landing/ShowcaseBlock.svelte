@@ -3,10 +3,14 @@
   import { asset } from "$app/paths";
   import { TrophyIcon } from "@lucide/svelte";
 
-  let { item }: { item: ProjectItem } = $props();
+  let { item, preview = true }: { item: ProjectItem; preview?: boolean } =
+    $props();
 
   const chipClass =
     "inline-block px-1 font-mono text-xs text-(--fd-secondary-foreground) bg-(--fd-secondary) rounded";
+
+  const awardChipClass =
+    "px-1 font-mono text-xs text-(--fd-gold) bg-(--fd-gold-background) rounded";
 
   let hover = $state(false);
   let self: HTMLDivElement | null = $state(null);
@@ -17,8 +21,12 @@
     return asset(path);
   };
 
-  const previewImage = $derived.by(() => resolvePath(item.previewImage));
-  const previewVideo = $derived.by(() => resolvePath(item.previewVideo));
+  const previewImage = $derived.by(() =>
+    preview ? resolvePath(item.previewImage) : undefined,
+  );
+  const previewVideo = $derived.by(() =>
+    preview ? resolvePath(item.previewVideo) : undefined,
+  );
 
   function handleMouseMove(e: MouseEvent) {
     const rect = self?.getBoundingClientRect();
@@ -47,16 +55,26 @@
     rel="noreferrer external"
     class="flex flex-col"
   >
+    <span
+      class="hidden absolute -left-20 top-1 w-16 pointer-events-none lg:flex justify-end"
+    >
+      <span class={chipClass}>{item.category}</span>
+    </span>
+    <span class="flex flex-wrap items-baseline gap-1 mb-1 lg:hidden">
+      <span class={chipClass}>{item.category}</span>
+      {#if item.award}
+        <span class={`${awardChipClass} inline-block`}>
+          <TrophyIcon class="size-3 inline-block mr-1 align-[-0.15em]" />{item.award}
+        </span>
+      {/if}
+    </span>
     <span class="flex flex-row items-baseline gap-2">
-      <span class="shrink-0 flex flex-row items-baseline gap-1">
-        <span class={chipClass}>{item.category}</span>
-        {#if item.award}
-          <span class={chipClass}>
-            <TrophyIcon class="size-3 inline-block mr-1 align-[-0.15em]" />{item.award}
-          </span>
-        {/if}
-      </span>
       <span>{item.title}</span>
+      {#if item.award}
+        <span class={`${awardChipClass} hidden lg:inline-block`}>
+          <TrophyIcon class="size-3 inline-block mr-1 align-[-0.15em]" />{item.award}
+        </span>
+      {/if}
     </span>
     {#if item.authors}
       <p class="text-sm text-(--fd-secondary-foreground)">
@@ -71,7 +89,7 @@
   </a>
 
   <div
-    class={`flex items-center justify-center pointer-events-none mx-auto w-1/2 fixed inset-0 transition duration-300 z-50 ${
+    class={`hidden lg:flex items-center justify-center pointer-events-none mx-auto w-1/2 fixed inset-0 transition duration-300 z-50 ${
       hover ? "opacity-100 scale-100" : "opacity-0 scale-75"
     }`}
   >

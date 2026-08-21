@@ -1,7 +1,8 @@
 <script lang="ts">
   import "./layout.css";
   import favicon from "$lib/assets/favicon.ico";
-  import { resolve } from "$app/paths";
+  import { asset, resolve } from "$app/paths";
+  import { pageLinks } from "$lib/config";
   import { setContext } from "svelte";
   import {
     childNavsContext,
@@ -13,6 +14,11 @@
   let { children } = $props();
 
   const rootUrl = resolve("/");
+
+  const pageLinksWithBase = pageLinks.map((link) => ({
+    text: link.text,
+    href: link.kind === "asset" ? asset(link.href) : resolve(link.href),
+  }));
 
   const rootNav = {
     title: "Po-Yun Cheng",
@@ -59,7 +65,7 @@
   class="flex flex-1 flex-col px-4 lg:px-48 xl:px-72 bg-(--fd-background) text-(--fd-foreground) min-h-screen"
 >
   <header
-    class="mb-4 border-(--fd-border) mt-10 flex items-center justify-between"
+    class="mb-8 border-(--fd-border) mt-10 flex items-center justify-between"
   >
     <nav
       class="flex items-center gap-2 text-base font-bold text-(--fd-secondary-foreground)"
@@ -93,18 +99,31 @@
         </a>
       {/if}
     </nav>
-    <button
-      type="button"
-      class="inline-flex items-center p-1 text-(--fd-foreground) transition hover:text-(--fd-primary)"
-      aria-pressed={isDark}
-      onclick={() => setTheme(!isDark)}
-    >
-      {#if isDark}
-        <MoonIcon class="size-5" />
-      {:else}
-        <SunIcon class="size-5" />
-      {/if}
-    </button>
+    <div class="flex items-center gap-4">
+      <nav
+        class="flex items-center gap-4 text-sm text-(--fd-secondary-foreground)"
+      >
+        {#each pageLinksWithBase as link (link.href)}
+          <!-- href is already resolved above -->
+          <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+          <a href={link.href} class="hover:text-(--fd-primary) hover:underline">
+            {link.text}
+          </a>
+        {/each}
+      </nav>
+      <button
+        type="button"
+        class="inline-flex items-center p-1 text-(--fd-foreground) transition hover:text-(--fd-primary)"
+        aria-pressed={isDark}
+        onclick={() => setTheme(!isDark)}
+      >
+        {#if isDark}
+          <MoonIcon class="size-5" />
+        {:else}
+          <SunIcon class="size-5" />
+        {/if}
+      </button>
+    </div>
   </header>
   {@render children()}
 </main>

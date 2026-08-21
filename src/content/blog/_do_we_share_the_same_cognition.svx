@@ -1,0 +1,30 @@
+---
+title: "Do we share the same cognition?"
+date: 2026-08-20
+tags:
+  - "AI"
+---
+
+<script>
+	import ImageWrap from "../../components/svx/ImageWrap.svelte";
+</script>
+
+I was always confusing about the boundary between human's ability and AI's ability, what is human capable of that AI is not able to do? Especially in the filed of programming, this uncertainty actually make me a little bit stressed, since I don't know what to do to "not being replace" by AI.
+
+Therefore, it's important to 剖析 how exactly the different between human and AI understand the code. 
+From the perspective of software engineering, certainly modular code is easier to maintain, not only because usually it make the repo less coupling, but also we human developer are easily to navigate, whether by functionality or service or name.
+
+While for AI, is that hold true? That's the first thing I want to know.
+
+I did some simple test (very simple because I'm a poor student)
+
+[test]
+
+We know AI is actually more efficient when producing a single html file rather than a well structure react app. I definitly don't want to review a thousand line of html files, who the hell write this? To make AI easier to navigate, we need to provide extra information, like map, readme... So it takes more token and time. While modules also is great because it act as a pre-filter for input context, to avoid putting unrelated code into context.
+
+Certainly, AI is train to be like human, so it some way we could use the old approach that work on human that also work on AI, but it is eventually not a human and must have difference from human, I want to find those difference and see how could we modify the old approach to optimize it.
+
+So in overall, what kind of repo structure is better for AI? That's the second thing I want to know.
+Moreover, does the development process that works in human also works on AI?
+
+
