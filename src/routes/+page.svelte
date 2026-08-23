@@ -12,9 +12,7 @@
   <div class="flex flex-col gap-4 lg:gap-8 mb-8">
     <div class="flex flex-col">
       <div class="flex flex-col gap-4 lg:gap-8">
-        <div
-          class="flex flex-col sm:flex-row items-start mt-2 gap-4 sm:gap-8"
-        >
+        <div class="flex flex-col sm:flex-row items-start mt-2 gap-4 sm:gap-8">
           <img class="w-28 sm:w-40" src={asset("/head.jpg")} alt="Me" />
           <div class="max-w-2xl text-left flex flex-col gap-2">
             <p>
@@ -26,13 +24,11 @@
               Engineering and Human-Computer Interaction.
             </p>
             <p>
-              My broad research goal is to <strong
+              I'm interested in Human-Computer Interaction, Software Engineering
+              and Artificial Intelligence. My broad research goal is to <strong
                 >reduce the human effort and computational cost of software
                 development and maintenance</strong
-              >. Specifically, I am currently interested in whether AI agents
-              and humans need different code representations or development
-              processes to collaborate efficiently, and whether we can
-              systematically bridge them.
+              >.
             </p>
             <p>
               Contact:
