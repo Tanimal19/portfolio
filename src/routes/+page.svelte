@@ -3,7 +3,7 @@
   import SectionBlock from "../components/landing/SectionBlock.svelte";
   import { socialLinks, projectItems } from "$lib/config";
   import ShowcaseBlock from "../components/landing/ShowcaseBlock.svelte";
-  import { asset } from "$app/paths";
+  import { asset, resolve } from "$app/paths";
 
   let showColophon = false;
 </script>
@@ -74,6 +74,9 @@
             <ShowcaseBlock {item} />
           {/if}
         {/each}
+        <a href={resolve("/works")} class="w-fit hover:underline"
+          >see all works</a
+        >
       </div>
     </SectionBlock>
   </div>

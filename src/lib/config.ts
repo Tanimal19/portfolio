@@ -133,6 +133,7 @@ export type PageLink =
 export const pageLinks: PageLink[] = [
   { kind: "page", href: "/works", text: "Works" },
   { kind: "page", href: "/blog", text: "Writings" },
+  { kind: "page", href: "/notes", text: "Notes" },
   { kind: "asset", href: "/poyuncheng_cv.pdf", text: "Curriculum Vitae" },
   { kind: "page", href: "/misc", text: "Misc" },
 ];
