@@ -4,7 +4,7 @@ year: 2024
 link: "https://arxiv.org/abs/2408.03910"
 date: "2026-08-25"
 tags:
-  - "Tools for AI"
+  - "AI-Software"
 ---
 
 讓 LLM 更容易地理解和操作 code (repository)
