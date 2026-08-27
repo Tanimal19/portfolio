@@ -3,8 +3,6 @@ title: "CodexGraph: Bridging Large Language Models and Code Repositories via Cod
 year: 2024
 link: "https://arxiv.org/abs/2408.03910"
 date: "2026-08-25"
-tags:
-  - "AI-Software"
 ---
 
 讓 LLM 更容易地理解和操作 code (repository)

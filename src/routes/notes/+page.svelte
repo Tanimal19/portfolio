@@ -37,6 +37,8 @@
     );
   });
 
+  let expanded = $state<Record<string, boolean>>({});
+
   const formatDate = (value: string) =>
     new Date(value).toLocaleDateString("en-US", {
       year: "numeric",
@@ -85,9 +87,16 @@
     {:else}
       {#each filteredNotes as note (note.slug)}
         {@const NoteContent = note.component}
-        <article class="border-l-2 border-(--fd-border) pl-4">
+        <article class="relative pl-4">
+          <button
+            type="button"
+            aria-label={`Toggle ${note.title}`}
+            aria-expanded={!!expanded[note.slug]}
+            onclick={() => (expanded[note.slug] = !expanded[note.slug])}
+            class="absolute inset-y-0 left-0 w-8 cursor-pointer border-l-2 border-(--fd-border) hover:border-(--fd-primary)"
+          ></button>
           <header class="space-y-1">
-            <h2 class="text-lg font-medium font-sans">
+            <h2 class="text-sm font-medium font-sans">
               {#if note.link}
                 <!-- external paper link -->
                 <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
@@ -108,16 +117,20 @@
                 >
               {/if}
             </h2>
-            <p class="text-xs text-(--fd-secondary-foreground)">
-              read {formatDate(note.date)}
-            </p>
+            {#if expanded[note.slug]}
+              <p class="text-xs text-(--fd-secondary-foreground)">
+                read {formatDate(note.date)}
+              </p>
+            {/if}
           </header>
 
-          <div
-            class="prose prose-neutral prose-sm mt-4 max-w-none font-sans text-(--fd-foreground) prose-headings:text-(--fd-foreground)"
-          >
-            <NoteContent />
-          </div>
+          {#if expanded[note.slug]}
+            <div
+              class="prose prose-neutral prose-sm mt-4 max-w-none font-sans text-(--fd-foreground) prose-headings:text-(--fd-foreground)"
+            >
+              <NoteContent />
+            </div>
+          {/if}
         </article>
       {/each}
     {/if}

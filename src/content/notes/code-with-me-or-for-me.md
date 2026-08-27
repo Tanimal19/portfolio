@@ -3,8 +3,6 @@ title: "Code with Me or for Me? How Increasing AI Automation Transforms Develope
 year: 2025
 link: "https://dl.acm.org/doi/10.1145/3597503.3639187"
 date: "2026-08-26"
-tags:
-  - "Human-AI Tool"
 ---
 
 User study on performance of developers using *copilots* or *coding agents*.

@@ -3,8 +3,6 @@ title: "Using an LLM to Help With Code Understanding"
 year: 2024
 link: "https://dl.acm.org/doi/10.1145/3597503.3639187"
 date: "2026-08-25"
-tags:
-  - "Human-AI Tool"
 ---
 
 透過 in-IDE, prompt-less 工具協助使用者理解 code (snippet)  

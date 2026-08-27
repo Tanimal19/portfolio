@@ -9,7 +9,7 @@
     type ChildNav,
     type ChildNavSetter,
   } from "$lib/child-navs";
-  import { SunIcon, MoonIcon } from "@lucide/svelte";
+  import { SunIcon, MoonIcon, MenuIcon, XIcon } from "@lucide/svelte";
 
   let { children } = $props();
 
@@ -30,6 +30,8 @@
   let childNavsToken = 0;
 
   let isDark = $state(false);
+
+  let menuOpen = $state(false);
 
   const applyTheme = (dark: boolean) => {
     if (typeof document === "undefined") {
@@ -65,10 +67,10 @@
   class="flex flex-1 flex-col px-4 lg:px-48 xl:px-72 bg-(--fd-background) text-(--fd-foreground) min-h-screen"
 >
   <header
-    class="mb-8 border-(--fd-border) mt-10 flex items-center justify-between"
+    class="relative mb-8 border-(--fd-border) mt-10 flex items-center justify-between gap-4"
   >
     <nav
-      class="flex items-center gap-2 text-base font-bold text-(--fd-secondary-foreground)"
+      class="flex min-w-0 items-center gap-2 truncate text-base font-bold text-(--fd-secondary-foreground)"
     >
       {#if childNavs.length}
         <a href={rootUrl} class="hover:text-(--fd-primary)">
@@ -99,9 +101,9 @@
         </a>
       {/if}
     </nav>
-    <div class="flex items-center gap-4">
+    <div class="flex shrink-0 items-center gap-4">
       <nav
-        class="flex items-center gap-4 text-sm text-(--fd-secondary-foreground)"
+        class="hidden items-center gap-4 text-sm text-(--fd-secondary-foreground) sm:flex"
       >
         {#each pageLinksWithBase as link (link.href)}
           <!-- href is already resolved above -->
@@ -111,6 +113,36 @@
           </a>
         {/each}
       </nav>
+      <details
+        bind:open={menuOpen}
+        class="sm:hidden"
+      >
+        <summary
+          class="inline-flex cursor-pointer list-none items-center p-1 text-(--fd-foreground) transition hover:text-(--fd-primary) [&::-webkit-details-marker]:hidden"
+          aria-label="Menu"
+        >
+          {#if menuOpen}
+            <XIcon class="size-5" />
+          {:else}
+            <MenuIcon class="size-5" />
+          {/if}
+        </summary>
+        <nav
+          class="absolute right-0 top-full z-50 mt-2 flex min-w-36 flex-col gap-1 rounded-lg border border-(--fd-border) bg-(--fd-background) p-2 text-sm text-(--fd-secondary-foreground) shadow-lg"
+        >
+          {#each pageLinksWithBase as link (link.href)}
+            <!-- href is already resolved above -->
+            <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
+            <a
+              href={link.href}
+              class="rounded px-2 py-1 hover:text-(--fd-primary) hover:underline"
+              onclick={() => (menuOpen = false)}
+            >
+              {link.text}
+            </a>
+          {/each}
+        </nav>
+      </details>
       <button
         type="button"
         class="inline-flex items-center p-1 text-(--fd-foreground) transition hover:text-(--fd-primary)"

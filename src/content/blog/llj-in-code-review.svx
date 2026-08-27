@@ -1,0 +1,68 @@
+---
+title: "LLM-as-a-judge in Code Review"
+date: 2026-06-29
+tags:
+  - "AI"
+  - "research"
+---
+
+<script>
+	import ImageWrap from "../../components/svx/ImageWrap.svelte";
+</script>
+
+This part of the report I did for my research, I just think it will be useful.
+
+16 papers + 1 research article from 2024 ~ 2026.
+
+## Overall weakness
+- LLJ results can highly biased based on structure of the prompt or model itself.
+  - Even changing the function name can make LLJ give the wrong verdict [6].
+- LLJ results has inconsistency in multi-shot evaluation (even when temperature=0).
+- LLJ don’t actually follow the evaluate rubric but it’s training data.
+  - Detailed prompting is helpless to increase LLJ alignment to human evaluator results [11].
+- When not provided with a correct reference, LLJ show high agreement with human experts only on questions the LLJ were able to correctly answer themselves [2].
+
+<ImageWrap src="/blog-attachments/llj-bias.png" alt="Bias of LLJ" caption="Bias of LLJ. Source: [8]" width="750" />
+
+## Current Mitigations
+- Provide verified correct references in prompt.
+  - *"Providing accurate references increases agreement with human annotators, while providing slightly incorrect references can be worse than providing no reference at all."* [2]
+- Use pairwise ranking rather than giving specific score.
+- Council of judges (different models) or Multi-shot evaluation (same model, multiple times).
+- Evaluate under different prompt structures (e.g. position order).
+- Evaluate in lower granularity.
+  - Example: "Is this review correct?" -> "Is this issue correct?" x 10
+- Counterfactual verification.
+  - Example: if the original code passed the test, the issue might be fake; if the patched code passed more tests, the issue might be real.
+- Use a different judge model from the tested model.
+- Avoid asking the judge to output an extra fix for the wrong input.
+- **However, in my opinion, these mitigations still cannot make LLJ a trustworthy evaluation approach.**
+
+## LLJ in Code Review
+- LLJ shows low human alignment on coding task, most of the misalignment in software engineering criteria. [13]
+- LLJ has high false positive rate that identify correct code as issue. [16]
+- LLJ might be superficial on reasoning task that give nondeterministic responses, incorrect and unfaithful reasoning. [6]
+  - *"... with many strong models (e.g., GPT-4o) performing just slightly better than random guessing."* [10]
+- **In conclusion, even the best models still not capable in replace human evaluator.**
+
+
+
+## Reference
+
+1. Y. Wang et al., “TrustJudge: Inconsistencies of LLM-as-a-Judge and How to Alleviate Them,” Sep. 26, 2025, arXiv: arXiv:2509.21117. doi: 10.48550/arXiv.2509.21117.
+2. M. Krumdick, C. Lovering, V. Reddy, S. Ebner, and C. Tanner, “No Free Labels: Limitations of LLM-as-a-Judge Without Human Grounding,” Apr. 01, 2026, arXiv: arXiv:2503.05061. doi: 10.48550/arXiv.2503.05061.
+3. K. Chehbouni, M. Haddou, J. C. Cheung, and G. Farnadi, “Neither Valid nor Reliable? Investigating the Use of LLMs as Judges,” Advances in Neural Information Processing Systems, vol. 38, Apr. 2026, Accessed: Jun. 27, 2026. [Online]. Available: https://proceedings.neurips.cc/paper_files/paper/2025/hash/829e8f32d76a6248815bf5b01633811d-Abstract-Position_Paper_Track.html
+4. H. Li et al., “LLMs-as-Judges: A Comprehensive Survey on LLM-based Evaluation Methods,” Dec. 10, 2024, arXiv: arXiv:2412.05579. doi: 10.48550/arXiv.2412.05579.
+5. S. Li et al., “LLMs Cannot Reliably Judge (Yet?): A Comprehensive Assessment on the Robustness of LLM-as-a-Judge,” Nov. 16, 2025, arXiv: arXiv:2506.09443. doi: 10.48550/arXiv.2506.09443.
+6. S. Ullah, M. Han, S. Pujar, H. Pearce, A. Coskun, and G. Stringhini, “LLMs Cannot Reliably Identify and Reason About Security Vulnerabilities (Yet?): A Comprehensive Evaluation, Framework, and Benchmarks,” in 2024 IEEE Symposium on Security and Privacy (SP), May 2024, pp. 862–880. doi: 10.1109/SP54263.2024.00210.
+7. M. Kawalerowicz, M. Pietranik, and K. Stępniak, “LLMs as Code Review Agents: A Rapid Review and Experimental Evaluation with Human Expert Judges,” in Computational Collective Intelligence, N. T. Nguyen, V. Dinh Duc Anh, A. Kozierkiewicz, S. Nguyen Van, M. Núñez, J. Treur, and G. Vossen, Eds., Cham: Springer Nature Switzerland, 2026, pp. 346–360. doi: 10.1007/978-3-032-09318-9_24.
+8. J. Ye et al., “Justice or Prejudice? Quantifying Biases in LLM-as-a-Judge,” International Conference on Learning Representations, vol. 2025, pp. 102351–102390, May 2025, Accessed: Jun. 27, 2026. [Online]. Available: https://proceedings.iclr.cc/paper_files/paper/2025/hash/fdca08d371e4b6c031397909e20043bd-Abstract-Conference.html
+9. L. Shi, C. Ma, W. Liang, X. Diao, W. Ma, and S. Vosoughi, “Judging the Judges: A Systematic Study of Position Bias in LLM-as-a-Judge,” in Proceedings of the 14th International Joint Conference on Natural Language Processing and the 4th Conference of the Asia-Pacific Chapter of the Association for Computational Linguistics, K. Inui, S. Sakti, H. Wang, D. F. Wong, P. Bhattacharyya, B. Banerjee, A. Ekbal, T. Chakraborty, and D. P. Singh, Eds., Mumbai, India: The Asian Federation of Natural Language Processing and The Association for Computational Linguistics, Feb. 2025, pp. 292–314. doi: 10.18653/v1/2025.ijcnlp-long.18.
+10. S. Tan et al., “JudgeBench: A Benchmark for Evaluating LLM-Based Judges,” International Conference on Learning Representations, vol. 2025, pp. 63277–63303, May 2025, Accessed: Jun. 27, 2026. [Online]. Available: https://proceedings.iclr.cc/paper_files/paper/2025/hash/9e720fce64f91114c49cfd640d821da3-Abstract-Conference.html
+11. B. Murugadoss et al., “Evaluating the Evaluator: Measuring LLMs’ Adherence to Task Evaluation Instructions,” Proceedings of the AAAI Conference on Artificial Intelligence, vol. 39, no. 18, pp. 19589–19597, Apr. 2025, doi: 10.1609/aaai.v39i18.34157.
+12. “Evaluating AI Agents: Can LLM‑as‑a‑Judge Evaluators Be Trusted? | Microsoft Community Hub,” TECHCOMMUNITY.MICROSOFT.COM. Accessed: Jun. 27, 2026. [Online]. Available: https://techcommunity.microsoft.com/blog/azure-ai-foundry-blog/evaluating-ai-agents-can-llm%e2%80%91as%e2%80%91a%e2%80%91judge-evaluators-be-trusted/4480110
+13. A. Mittal et al., “Comparing Developer and LLM Biases in Code Evaluation,” May 14, 2026, arXiv: arXiv:2603.24586. doi: 10.48550/arXiv.2603.24586.
+14. K. Schroeder and Z. Wood-Doughty, “Can You Trust LLM Judgments? Reliability of LLM-as-a-Judge,” Feb. 18, 2025, arXiv: arXiv:2412.12509. doi: 10.48550/arXiv.2412.12509.
+15. Y. Mou, X. Deng, Y. Luo, S. Zhang, and W. Ye, “Can You Really Trust Code Copilot? Evaluating Large Language Models from a Code Security Perspective,” in Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers), W. Che, J. Nabende, E. Shutova, and M. T. Pilehvar, Eds., Vienna, Austria: Association for Computational Linguistics, Jul. 2025, pp. 17349–17369. doi: 10.18653/v1/2025.acl-long.849.
+16. H. Jin and H. Chen, “Are LLMs Reliable Code Reviewers? Systematic Overcorrection in Requirement Conformance Judgement,” Feb. 28, 2026, arXiv: arXiv:2603.00539. doi: 10.48550/arXiv.2603.00539.
+17. J. Gu et al., “A Survey on LLM-as-a-Judge,” Oct. 19, 2025, arXiv: arXiv:2411.15594. doi: 10.48550/arXiv.2411.15594.

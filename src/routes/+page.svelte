@@ -16,7 +16,7 @@
           <img class="w-28 sm:w-40" src={asset("/head.jpg")} alt="Me" />
           <div class="max-w-2xl text-left flex flex-col gap-2">
             <p>
-              Hi, I'm Po-Yun Cheng (mandarin: 鄭博允), a recent Computer Science
+              Hi, I'm Po-Yun Cheng (Mandarin: 鄭博允), a recent Computer Science
               graduate from <AnimateExternalLink
                 href="https://www.csie.ntu.edu.tw/"
                 text="National Taiwan University"
@@ -24,11 +24,14 @@
               Engineering and Human-Computer Interaction.
             </p>
             <p>
-              I'm interested in Human-Computer Interaction, Software Engineering
-              and Artificial Intelligence. My broad research goal is to <strong
-                >reduce the human effort and computational cost of software
-                development and maintenance</strong
-              >.
+              <i
+                >What developers prefer is not always what keeps a codebase
+                healthy; verification made too easy can quietly let technical
+                debt through.</i
+              > My research aims to make verifying AI-generated code cheaper for
+              developers without letting quality erode. I design interfaces, tools,
+              and metrics to support this, combining methods from HCI, software engineering,
+              and AI systems.
             </p>
             <p>
               Contact:

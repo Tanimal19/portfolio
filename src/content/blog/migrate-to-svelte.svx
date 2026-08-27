@@ -2,8 +2,8 @@
 title: "Migrate to Svelte"
 date: "2026-02-19"
 tags:
-  - "tech notes"
   - "AI"
+  - "thoughts"
 ---
 
 I just migrated my personal website to SvelteKit. This is the third time I’ve rewritten it.
