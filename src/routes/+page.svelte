@@ -16,22 +16,31 @@
           <img class="w-28 sm:w-40" src={asset("/head.jpg")} alt="Me" />
           <div class="max-w-2xl text-left flex flex-col gap-2">
             <p>
-              Hi, I'm Po-Yun Cheng (Mandarin: 鄭博允), a recent Computer Science
-              graduate from <AnimateExternalLink
-                href="https://www.csie.ntu.edu.tw/"
-                text="National Taiwan University"
-              />, currently preparing for PhD applications in Software
-              Engineering and Human-Computer Interaction.
+              Hi, I'm Po-Yun Cheng (Mandarin: 鄭博允) from Taiwan, currently
+              preparing for Fall'27 PhD applications in Software Engineering and
+              Human-Computer Interaction.
             </p>
             <p>
-              <i
-                >What developers prefer is not always what keeps a codebase
-                healthy; verification made too easy can quietly let technical
-                debt through.</i
-              > My research aims to make verifying AI-generated code cheaper for
-              developers without letting quality erode. I design interfaces, tools,
-              and metrics to support this, combining methods from HCI, software engineering,
-              and AI systems.
+              Previously, I received my B.S. in Computer Science at <AnimateExternalLink
+                href="https://www.csie.ntu.edu.tw/"
+                text="National Taiwan University"
+              /> and was fortunate to do undergraduate research with <AnimateExternalLink
+                href="https://www.csie.ntu.edu.tw/~jlee/#/home"
+                text="Prof. Jonathan Lee"
+              /> on automated code review and with <AnimateExternalLink
+                href="https://mikechen.com"
+                text="Prof. Mike Y. Chen"
+              /> on user experience research in VR.
+            </p>
+            <p>
+              I believe <i>
+                what looks good to developers is not always what keeps a
+                codebase healthy, and verification made too easy can quietly let
+                technical debt through.
+              </i> My research goal is to make verifying AI-generated code cheaper
+              for developers without letting quality erode. I design interfaces,
+              tools, and metrics to support this, combining methods from HCI, software
+              engineering, and AI systems.
             </p>
             <p>
               Contact:
