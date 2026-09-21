@@ -79,7 +79,7 @@
     {/if}
   </header>
 
-  <div class="mt-10 space-y-10 mb-10">
+  <div class="mt-10 space-y-6 mb-10">
     {#if filteredNotes.length === 0}
       <p class="text-(--fd-secondary-foreground)">
         {activeTag ? "No notes for this tag yet." : "No notes yet."}
@@ -87,41 +87,32 @@
     {:else}
       {#each filteredNotes as note (note.slug)}
         {@const NoteContent = note.component}
-        <article class="relative pl-4">
-          <button
-            type="button"
-            aria-label={`Toggle ${note.title}`}
-            aria-expanded={!!expanded[note.slug]}
-            onclick={() => (expanded[note.slug] = !expanded[note.slug])}
-            class="absolute inset-y-0 left-0 w-8 cursor-pointer border-l-2 border-(--fd-border) hover:border-(--fd-primary)"
-          ></button>
-          <header class="space-y-1">
-            <h2 class="text-sm font-medium font-sans">
-              {#if note.link}
-                <!-- external paper link -->
-                <!-- eslint-disable-next-line svelte/no-navigation-without-resolve -->
-                <a
-                  href={note.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  class="hover:underline hover:text-(--fd-primary)"
-                >
-                  {note.title}
-                </a>
-              {:else}
-                {note.title}
-              {/if}
+        <article
+          class="relative border-l-2 border-(--fd-border) pl-4 transition-colors hover:border-(--fd-primary)"
+        >
+          <header
+            class="relative -mx-2 -my-1.5 space-y-1 rounded-md px-2 py-1 transition-colors has-[button:hover]:bg-(--fd-secondary) has-[button:focus-visible]:bg-(--fd-secondary)"
+          >
+            <button
+              type="button"
+              aria-label={`Toggle ${note.title}`}
+              aria-expanded={!!expanded[note.slug]}
+              onclick={() => (expanded[note.slug] = !expanded[note.slug])}
+              class="absolute inset-0 w-full cursor-pointer rounded-md outline-none"
+            ></button>
+            <h2 class="text-sm font-medium font-sans select-none">
+              {note.title}
               {#if note.year}
                 <span class="font-normal text-(--fd-secondary-foreground)"
                   >({note.year})</span
                 >
               {/if}
             </h2>
-            {#if expanded[note.slug]}
-              <p class="text-xs text-(--fd-secondary-foreground)">
-                read {formatDate(note.date)}
-              </p>
-            {/if}
+            <p
+              class="flex items-center gap-1.5 text-xs text-(--fd-secondary-foreground)"
+            >
+              <span>read {formatDate(note.date)}</span>
+            </p>
           </header>
 
           {#if expanded[note.slug]}

@@ -1,0 +1,65 @@
+---
+title: "Ironies of automation"
+date: 2026-06-29
+tags:
+  - "AI"
+  - "research"
+---
+
+<script>
+	import ImageWrap from "../../components/svx/ImageWrap.svelte";
+</script>
+
+前幾天在跟 Claude 討論 PhD 方向時，被推薦了這篇論文，讀完之後覺得，真是太對了，that's exactly what I'm thinking，原來四十年前就已跟有人提過了，我怎麼這麼晚才知道呢？
+
+當然現在 AI 的發展和這篇論文提出的悖論非常類似，但在情境上又有些不同，當年主要是在講硬體的控制系統，然而軟體和自動化系統不一樣，軟體的錯誤基本上是依賴在數學和程式邏輯上，而非硬體機械，所以(理論上)他是完全可控的，軟體的老化完全是建立在需求變更之上，而非元件本身的衰變。
+
+《Ironies of automation》是一篇關於自動化系統的經典論文，概念上是提出一個悖論：人不可靠，系統要自動化；系統要自動化，人要更可靠。
+(實際上換一個動機也成立：人要輕鬆，系統要自動化；系統要自動化，人不能輕鬆)
+
+> ... the more advanced a control system is, so the more crucial may be the contribution of the human operator.
+
+理想的自動化系統透過移除人對系統的掌握度，藉此迴避人類在操作上的不可靠性，以及達成人類無法完成的工作，也因此當系統越自動化，人類越不需要知道系統在做什麼，也越不需要操作系統的技能。
+
+然而當自動化系統出了問題，必須要由人來接手時，這個接手的情境相對於原本全人工的情況來的更嚴苛，這個時候反而需要處理的人知道系統在做什麼以及具備操作系統的技能。可以發現這個跟上面的自動化系統的目的違背，所以這類系統的效益建立在「人維運自動化系統」的成本低於「人自己操作系統」的成本。
+
+當然大多數的情況是這樣的，但在軟體開發這個情境下，我們將「開發軟體」這件事本身看作是操作系統的行為，這裡的系統指的是則是開發軟體的工具 i.e. IDE。而人去
+
+<ImageWrap src="/blog-attachments/ironies-of-automation-2.png" alt="" caption="" width="750" />
+
+維運成本實際上
+
+然而大多數的時候
+
+最簡單的形式是讓人在與系統合作的
+
+同樣的，在軟體開發上，理想的 AI 最終目標就是幫人
+
+我認為這個概念可以套用在任何自動化系統的發展上，系統的效益在於將原本「低階人工的操作成本」轉移到「高階人才的訓練成本 + 系統建置成本 + 系統運作成本」上，這中間的差就是自動化系統的效益。
+
+
+當我們在使用 AI
+
+至於套用在 AI 這個理論也同樣適用，就舉最常見的應用，用 AI 來協助軟體開發，
+
+你可以想像請數萬個人來模擬當代電腦，每個人只需要做一件事，舉手是 1、
+
+
+舉個例子，電影《羅馬浴場》裡面有一幕是讓奴隸用嘴巴去吸 XX 來模擬馬桶，
+如果將馬桶視為一種系統，它的效益在於「請奴隸吸 XX 的成本」-「馬桶修理工的訓練成本 + 造馬桶的成本」。
+在當時，前者的成本幾乎是零，而後者則非常高且技術上不可行，但隨著時間推移，前者（人力成本）變得相對高昂，而後者的成本變得相當低（工業化），所以我們現在在能用馬桶。
+當然這可能是一個比較不文雅的例子，但我覺得很好笑，所以我還是放上來了。
+
+而對於這個悖論可能改善方法：
+1. 在自動化系統中增加人對系統的掌握度 (雖然這有違)
+
+> Perhaps the final irony is that it is the most successful automated systems, with rare need for manual intervention, which may need the greatest investment in human operator training.
+
+> I hope this paper has made clear both the irony that one is not by automating necessarily removing the difficulties, and also the possibility that resolving them will require even greater technological ingenuity than does classic automation.
+
+
+
+
+<ImageWrap src="/blog-attachments/ironies-of-automation-1.png" alt="Workload of operator with and without automated system" caption="Workload of operator with and without automated system" width="750" />
+
+

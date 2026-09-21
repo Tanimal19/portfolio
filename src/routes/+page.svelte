@@ -32,16 +32,7 @@
                 text="Prof. Mike Y. Chen"
               /> on user experience research in VR.
             </p>
-            <p>
-              I believe <i>
-                what looks good to developers is not always what keeps a
-                codebase healthy, and verification made too easy can quietly let
-                technical debt through.
-              </i> My research goal is to make verifying AI-generated code cheaper
-              for developers without letting quality erode. I design interfaces,
-              tools, and metrics to support this, combining methods from HCI, software
-              engineering, and AI systems.
-            </p>
+            <p>Recent focus: How to use AI more responsibly and efficiently?</p>
             <p>
               Contact:
               <AnimateExternalLink
